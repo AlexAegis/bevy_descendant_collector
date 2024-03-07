@@ -1,0 +1,14 @@
+{
+  "editor.formatOnSave": true,
+  "rust-analyzer.inlayHints.typeHints.enable": false,
+  "rust-analyzer.cargo.features": "all",
+  "rust-analyzer.check.features": "all",
+  "rust-analyzer.check.allTargets": true,
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "rust-analyzer.showUnlinkedFileNotification": false
+}

@@ -1,0 +1,27 @@
+[package]
+name = "bevy_armature_parser"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+dev = ["bevy/dynamic_linking"]
+
+[dependencies]
+bevy = { version = "0.13.0", features = [
+    "bevy_core_pipeline",
+    "bevy_asset",
+    "bevy_winit",
+    "bevy_render",
+    "bevy_sprite",
+    "png",
+    "x11",
+    "bevy_gilrs",
+    "bevy_scene",
+    "animation",
+    "bevy_gltf",
+] }
+bevy_armature_parser_derive = { path = "../bevy_armature_parser_derive" }
+
+[dev-dependencies]
+bevy_asset_loader = { version = "0.20.0" }
+bevy-inspector-egui = { version = "0.23.2" }

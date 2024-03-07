@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "rust-lang.rust-analyzer",
+    "editorconfig.editorconfig",
+    "mhutchie.git-graph",
+    "ritwickdey.LiveServer"
+  ]
+}

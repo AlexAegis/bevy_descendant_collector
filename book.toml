@@ -1,0 +1,15 @@
+# https://rust-lang.github.io/mdBook/format/configuration/general.html
+
+[book]
+title = "Bevy Descendant Collector"
+authors = ["AlexAegis"]
+description = "Collects entities into a single component for easy access"
+src = "docs"
+
+[build]
+build-dir = "target/book"
+
+[output.html]
+additional-css = []
+additional-js = []
+git-repository-url = "https://github.com/AlexAegis/bevy_descendant_collector"

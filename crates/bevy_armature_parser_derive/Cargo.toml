@@ -1,0 +1,14 @@
+[package]
+name = "bevy_armature_parser_derive"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+bevy = { version = "0.13.0" }
+better-bae = { version = "0.1.9" }
+proc-macro2 = { version = "1.0.78" }
+quote = { version = "1.0.35" }
+syn = { version = "2.0.48" }
