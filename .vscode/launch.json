@@ -11,13 +11,13 @@
       "cargo": {
         "args": [
           "run",
-          "--package=bevy_armature_parser",
+          "--package=bevy_descendant_collector",
           "--example=turret",
           "--features",
           "dev"
         ],
         "filter": {
-          "name": "bevy_armature_parser",
+          "name": "bevy_descendant_collector",
           "kind": "bin"
         }
       },

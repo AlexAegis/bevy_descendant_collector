@@ -1,5 +1,5 @@
 [package]
-name = "bevy_armature_parser"
+name = "bevy_descendant_collector"
 version = "0.1.0"
 edition = "2021"
 
@@ -20,7 +20,7 @@ bevy = { version = "0.13.0", features = [
     "animation",
     "bevy_gltf",
 ] }
-bevy_armature_parser_derive = { path = "../bevy_armature_parser_derive" }
+bevy_descendant_collector_derive = { path = "../bevy_descendant_collector_derive" }
 
 [dev-dependencies]
 bevy_asset_loader = { version = "0.20.0" }

@@ -1,9 +1,9 @@
 use bevy::prelude::*;
-use bevy_armature_parser::armature_loader::{ArmatureRegistry, ArmatureTarget};
-use bevy_armature_parser_derive::Armature;
 use bevy_asset_loader::asset_collection::AssetCollection;
 use bevy_asset_loader::loading_state::config::ConfigureLoadingState;
 use bevy_asset_loader::loading_state::{LoadingState, LoadingStateAppExt};
+use bevy_descendant_collector::armature_loader::{ArmatureRegistry, ArmatureTarget};
+use bevy_descendant_collector_derive::Armature;
 use bevy_inspector_egui::inspector_options::ReflectInspectorOptions;
 use bevy_inspector_egui::quick::WorldInspectorPlugin;
 use bevy_inspector_egui::InspectorOptions;

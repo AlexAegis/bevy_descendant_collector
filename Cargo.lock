@@ -435,27 +435,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "bevy_armature_parser"
-version = "0.1.0"
-dependencies = [
- "bevy",
- "bevy-inspector-egui",
- "bevy_armature_parser_derive",
- "bevy_asset_loader",
-]
-
-[[package]]
-name = "bevy_armature_parser_derive"
-version = "0.1.0"
-dependencies = [
- "better-bae",
- "bevy",
- "proc-macro2",
- "quote",
- "syn 2.0.52",
-]
-
-[[package]]
 name = "bevy_asset"
 version = "0.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -584,6 +563,27 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "028ae2a34678055185d7f1beebb1ebe6a8dcf3733e139e4ee1383a7f29ae8ba6"
 dependencies = [
  "bevy_macro_utils",
+ "quote",
+ "syn 2.0.52",
+]
+
+[[package]]
+name = "bevy_descendant_collector"
+version = "0.1.0"
+dependencies = [
+ "bevy",
+ "bevy-inspector-egui",
+ "bevy_asset_loader",
+ "bevy_descendant_collector_derive",
+]
+
+[[package]]
+name = "bevy_descendant_collector_derive"
+version = "0.1.0"
+dependencies = [
+ "better-bae",
+ "bevy",
+ "proc-macro2",
  "quote",
  "syn 2.0.52",
 ]

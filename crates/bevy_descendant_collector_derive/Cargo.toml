@@ -1,5 +1,5 @@
 [package]
-name = "bevy_armature_parser_derive"
+name = "bevy_descendant_collector_derive"
 version = "0.1.0"
 edition = "2021"
 
