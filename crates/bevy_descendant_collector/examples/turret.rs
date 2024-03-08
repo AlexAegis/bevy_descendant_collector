@@ -2,8 +2,7 @@ use bevy::prelude::*;
 use bevy_asset_loader::asset_collection::AssetCollection;
 use bevy_asset_loader::loading_state::config::ConfigureLoadingState;
 use bevy_asset_loader::loading_state::{LoadingState, LoadingStateAppExt};
-use bevy_descendant_collector::armature_loader::{ArmatureRegistry, ArmatureTarget};
-use bevy_descendant_collector_derive::Armature;
+use bevy_descendant_collector::*;
 use bevy_inspector_egui::inspector_options::ReflectInspectorOptions;
 use bevy_inspector_egui::quick::WorldInspectorPlugin;
 use bevy_inspector_egui::InspectorOptions;
@@ -32,67 +31,49 @@ pub struct MyTurretArmature {
 }
 
 #[derive(States, Default, Debug, Hash, PartialEq, PartialOrd, Eq, Clone, Copy)]
-enum MyTurretExampleState {
+enum ExampleAppState {
 	#[default]
 	Loading,
 	Loaded,
 }
 
-#[derive(Component, Default, Debug)]
-struct MyTurret;
-
 fn main() {
 	App::new()
-		.add_plugins((DefaultPlugins, WorldInspectorPlugin::new()))
+		.init_state::<ExampleAppState>()
+		.add_plugins((
+			DefaultPlugins,
+			WorldInspectorPlugin::new(),
+			ArmatureLoaderPlugin::<MyTurretArmature>::new(DescendantRootPosition::Scene),
+		))
 		.register_type::<MyTurretArmature>()
-		.register_armature::<MyTurretArmature>()
-		.init_state::<MyTurretExampleState>()
 		.add_loading_state(
-			LoadingState::new(MyTurretExampleState::Loading)
+			LoadingState::new(ExampleAppState::Loading)
 				.load_collection::<TurretModelAssets>()
-				.continue_to_state(MyTurretExampleState::Loaded),
+				.continue_to_state(ExampleAppState::Loaded),
 		)
-		.add_systems(Startup, (setup_camera, setup_example_scene))
-		.add_systems(OnEnter(MyTurretExampleState::Loaded), setup_turret)
+		.add_systems(Startup, spawn_example_scene)
+		.add_systems(OnEnter(ExampleAppState::Loaded), spawn_turret)
 		.run();
 }
 
-fn setup_turret(mut commands: Commands, turret_model_assets: Res<TurretModelAssets>) {
+fn spawn_turret(mut commands: Commands, turret_model_assets: Res<TurretModelAssets>) {
 	commands.spawn((
-		MyTurret,
 		SceneBundle {
 			scene: turret_model_assets.turret_model.clone(),
 			..default()
 		},
-		ArmatureTarget::<MyTurretArmature>::default(),
+		ArmatureTarget::<MyTurretArmature>::default(), // marking this entity that it needs an aggregator
 	));
 }
 
-fn setup_camera(mut commands: Commands) {
+fn spawn_example_scene(mut commands: Commands) {
 	commands.spawn(Camera3dBundle {
 		transform: Transform::from_xyz(1., 4., 5.).looking_at(Vec3::ZERO, Vec3::Y),
 		..default()
 	});
-}
-
-fn setup_example_scene(mut commands: Commands, assets: ResMut<AssetServer>) {
-	let box_handle = assets.add(Cuboid::new(1., 1., 1.).into());
 
 	commands.spawn(PointLightBundle {
 		transform: Transform::from_xyz(2.0, 0.6, 2.0).looking_at(Vec3::ZERO, Vec3::Y),
-		..default()
-	});
-
-	commands.spawn(PbrBundle {
-		mesh: box_handle,
-		transform: Transform::from_xyz(0.0, -1.0, 0.0),
-		material: assets.add(
-			StandardMaterial {
-				base_color: Color::GRAY,
-				..Default::default()
-			}
-			.into(),
-		),
 		..default()
 	});
 }

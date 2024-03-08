@@ -50,8 +50,8 @@ pub fn armature_path_map(input: proc_macro::TokenStream) -> proc_macro::TokenStr
 				format!("Named armature element not found for {struct_name} at {path}. Actual name paths are:\n")
 			};
 			quote! {
-				#ident: bevy_descendant_collector::find_named_entity::find_named_entity(armature_source_root, &named_query, &vec![#path]).unwrap_or_else(|| {
-					let named_entity_paths = bevy_descendant_collector::find_named_entity::collect_named_entity_paths(armature_source_root, &named_query);
+				#ident: bevy_descendant_collector::find_named_entity(armature_source_root, &named_query, &vec![#path]).unwrap_or_else(|| {
+					let named_entity_paths = bevy_descendant_collector::collect_named_entity_paths(armature_source_root, &named_query);
 					panic!("{} {:#?}", #error_msg, named_entity_paths);
 				}),
 			}
@@ -59,7 +59,7 @@ pub fn armature_path_map(input: proc_macro::TokenStream) -> proc_macro::TokenStr
 		.collect::<Vec<_>>();
 
 	proc_macro::TokenStream::from(quote! {
-		impl #impl_generics bevy_descendant_collector::armature_loader::ArmatureLoader for #struct_name #ty_generics #where_clause {
+		impl #impl_generics bevy_descendant_collector::ArmatureLoader for #struct_name #ty_generics #where_clause {
 
 			fn get_root_entity_name() -> &'static str {
 				#armature_entry_name

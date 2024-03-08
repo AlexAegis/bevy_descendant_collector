@@ -89,7 +89,6 @@ fn collect_paths_internal(
 					// If the entity has a name but no children, it's the end of a path
 					paths.push(new_path);
 				} else {
-					// Continue the recursion for each child
 					for &child in children.iter() {
 						collect_paths_internal(child, &new_path, named_query, paths);
 					}
@@ -100,7 +99,6 @@ fn collect_paths_internal(
 			}
 		}
 	}
-	// Entities without a Name component are simply skipped
 }
 
 #[cfg(test)]
