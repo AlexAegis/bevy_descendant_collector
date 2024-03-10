@@ -3,23 +3,14 @@ name = "bevy_descendant_collector"
 version = "0.1.0"
 edition = "2021"
 
+[lints]
+workspace = true
+
 [features]
 dev = ["bevy/dynamic_linking"]
 
 [dependencies]
-bevy = { version = "0.13.0", features = [
-    "bevy_core_pipeline",
-    "bevy_asset",
-    "bevy_winit",
-    "bevy_render",
-    "bevy_sprite",
-    "png",
-    "x11",
-    "bevy_gilrs",
-    "bevy_scene",
-    "animation",
-    "bevy_gltf",
-] }
+bevy = { version = "0.13.0" }
 bevy_descendant_collector_derive = { path = "../bevy_descendant_collector_derive" }
 
 [dev-dependencies]

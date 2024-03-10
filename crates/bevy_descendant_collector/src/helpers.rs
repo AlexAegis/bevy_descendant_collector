@@ -78,25 +78,23 @@ fn collect_paths_internal(
 	named_query: &Query<(Entity, Option<&Name>, Option<&Children>)>,
 	paths: &mut Vec<Vec<String>>,
 ) {
-	if let Ok((_, name_opt, children)) = named_query.get(entity) {
-		// Skip entities without a name
-		if let Some(name) = name_opt {
-			let mut new_path = current_path.to_vec();
-			new_path.push(name.as_str().to_string());
+	// Skip entities without a name
+	if let Ok((_, Some(name), children)) = named_query.get(entity) {
+		let mut new_path = current_path.to_vec();
+		new_path.push(name.as_str().to_string());
 
-			if let Some(children) = children {
-				if children.is_empty() {
-					// If the entity has a name but no children, it's the end of a path
-					paths.push(new_path);
-				} else {
-					for &child in children.iter() {
-						collect_paths_internal(child, &new_path, named_query, paths);
-					}
-				}
-			} else {
-				// If the entity has a name but does not have a Children component, it's a leaf node
+		if let Some(children) = children {
+			if children.is_empty() {
+				// If the entity has a name but no children, it's the end of a path
 				paths.push(new_path);
+			} else {
+				for &child in children.iter() {
+					collect_paths_internal(child, &new_path, named_query, paths);
+				}
 			}
+		} else {
+			// If the entity has a name but does not have a Children component, it's a leaf node
+			paths.push(new_path);
 		}
 	}
 }
@@ -105,7 +103,7 @@ fn collect_paths_internal(
 mod test {
 	use bevy::prelude::*;
 
-	use crate::find_named_entity::{collect_named_entity_paths, find_named_entity};
+	use crate::helpers::{collect_named_entity_paths, find_named_entity};
 
 	#[derive(Resource, Default)]
 	struct EntitySubject {

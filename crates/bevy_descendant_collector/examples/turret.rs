@@ -14,20 +14,20 @@ pub struct TurretModelAssets {
 }
 
 /// This struct will be populated from a loaded gltf scene, based on name paths.
-#[derive(Component, Armature, Reflect, InspectorOptions)]
+#[derive(Component, EntityCollectorTarget, Reflect, InspectorOptions)]
 #[reflect(InspectorOptions)]
-#[armature_path("Armature")]
+#[name_path("Armature")]
 pub struct MyTurretArmature {
-	#[armature_path()]
+	#[name_path()]
 	pub root: Entity,
-	#[armature_path("Bone")]
+	#[name_path("Bone.Root")]
 	pub base: Entity,
-	#[armature_path("Bone", "Bone.Neck")]
+	#[name_path("Bone.Root", "Bone.Neck")]
 	pub neck: Entity,
-	#[armature_path("Bone", "Bone.Neck", "Bone.Head")]
+	#[name_path("Bone.Root", "Bone.Neck", "Bone.Head")]
 	pub head: Entity,
-	#[armature_path("Bone.Head.Target.IK")]
-	pub target_ik: Entity,
+	#[name_path("Bone.Head.IK_CTRL")]
+	pub head_ik_ctrl: Entity,
 }
 
 #[derive(States, Default, Debug, Hash, PartialEq, PartialOrd, Eq, Clone, Copy)]
@@ -43,7 +43,7 @@ fn main() {
 		.add_plugins((
 			DefaultPlugins,
 			WorldInspectorPlugin::new(),
-			ArmatureLoaderPlugin::<MyTurretArmature>::new(DescendantRootPosition::Scene),
+			DescendantCollectorPlugin::<MyTurretArmature>::new(DescendantRootPosition::Scene),
 		))
 		.register_type::<MyTurretArmature>()
 		.add_loading_state(
@@ -62,7 +62,7 @@ fn spawn_turret(mut commands: Commands, turret_model_assets: Res<TurretModelAsse
 			scene: turret_model_assets.turret_model.clone(),
 			..default()
 		},
-		ArmatureTarget::<MyTurretArmature>::default(), // marking this entity that it needs an aggregator
+		DescendantCollectorTarget::<MyTurretArmature>::default(), // marking this entity that it needs an accumulator
 	));
 }
 
