@@ -10,7 +10,7 @@ workspace = true
 dev = ["bevy/dynamic_linking"]
 
 [dependencies]
-bevy = { version = "0.13.0" }
+bevy = { version = "0.13" }
 bevy_descendant_collector_derive = { path = "../bevy_descendant_collector_derive" }
 
 [dev-dependencies]

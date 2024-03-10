@@ -10,8 +10,7 @@ workspace = true
 proc-macro = true
 
 [dependencies]
-bevy = { version = "0.13.0" }
-better-bae = { version = "0.1.9" }
+bevy = { version = "0.13" }
 proc-macro2 = { version = "1.0.78" }
 quote = { version = "1.0.35" }
 syn = { version = "2.0.48" }
