@@ -39,41 +39,48 @@ impl<T: DescendantLoader + Component> DescendantCollectorTarget<T> {
 }
 
 /// This plugin is generic over different types of aggregator that you define.
-/// The default implementation is for Scenes using DescendantRootPosition::Scene
+/// The default implementation is for Scenes using HierarchyRootPosition::Scene
 pub struct DescendantCollectorPlugin<T: DescendantLoader + Component> {
-	pub descendant_root_position: DescendantRootPosition,
+	pub relative_root_position: HierarchyRootPosition,
 	pub(crate) _phantom_data: PhantomData<T>,
 }
 
 impl<T: DescendantLoader + Component> DescendantCollectorPlugin<T> {
-	pub fn new(descendant_root_position: DescendantRootPosition) -> Self {
+	pub fn new(relative_root_position: HierarchyRootPosition) -> Self {
 		Self {
-			descendant_root_position,
+			relative_root_position,
 			..default()
 		}
 	}
 }
 
 #[derive(Default, Debug, Clone, Copy, PartialEq, PartialOrd)]
-pub enum DescendantRootPosition {
+pub enum HierarchyRootPosition {
 	/// Scenes are starting from a child that does not explicitly says that it's
 	/// the root of a scene, nor is it's discoverable from another component,
 	/// so this option will search through all children, finding the first
-	/// grand-child that matches the name of the
-	///
+	/// grand-child that matches the name of the #[name_path("...")] defined
+	/// directly on the EntityCollectorTarget Component.
 	#[default]
 	Scene,
+	/// Whenever you want to automatically find the root of the hierarchy based
+	/// on the name defined as the #[name_path("...")] directly on the
+	/// EntityCollectorTarget Component.
 	Child,
-	/// Use the entity marked directly
+	/// Use the entity marked directly as the root of hierarchy. In this case,
+	/// the #[name_path("...")] directly on the EntityCollectorTarget Component
+	/// will be ignored.
 	Direct,
-	/// You can pass an entity directly to use as the search root
+	/// You can pass an entity directly to use as the search root. In this case,
+	/// the #[name_path("...")] directly on the EntityCollectorTarget Component
+	/// will be ignored.
 	Fixed(Entity),
 }
 
 impl<T: DescendantLoader + Component> Default for DescendantCollectorPlugin<T> {
 	fn default() -> Self {
 		Self {
-			descendant_root_position: DescendantRootPosition::default(),
+			relative_root_position: HierarchyRootPosition::default(),
 			_phantom_data: PhantomData,
 		}
 	}
@@ -81,14 +88,14 @@ impl<T: DescendantLoader + Component> Default for DescendantCollectorPlugin<T> {
 
 #[derive(Resource, Debug)]
 pub(crate) struct DescendantCollectorSettings<T: DescendantLoader + Component> {
-	pub descendant_root_position: DescendantRootPosition,
+	pub relative_root_position: HierarchyRootPosition,
 	pub(crate) _phantom_data: PhantomData<T>,
 }
 
 impl<T: DescendantLoader + Component> Plugin for DescendantCollectorPlugin<T> {
 	fn build(&self, app: &mut App) {
 		app.insert_resource(DescendantCollectorSettings::<T> {
-			descendant_root_position: self.descendant_root_position,
+			relative_root_position: self.relative_root_position,
 			_phantom_data: PhantomData,
 		});
 		app.add_systems(PostUpdate, collect_descendants_after_load::<T>);
@@ -109,15 +116,15 @@ fn collect_descendants_after_load<T: DescendantLoader + Component>(
 
 		let root_entity_name = T::get_root_entity_name();
 
-		let entity_source_root_opt = match settings.descendant_root_position {
-			DescendantRootPosition::Scene => {
+		let entity_source_root_opt = match settings.relative_root_position {
+			HierarchyRootPosition::Scene => {
 				find_named_grandchild(entity_map_target, &name_query, root_entity_name)
 			}
-			DescendantRootPosition::Child => {
+			HierarchyRootPosition::Child => {
 				find_named_entity(entity_map_target, &name_query, &[root_entity_name])
 			}
-			DescendantRootPosition::Direct => Some(entity_map_target),
-			DescendantRootPosition::Fixed(entity) => Some(entity),
+			HierarchyRootPosition::Direct => Some(entity_map_target),
+			HierarchyRootPosition::Fixed(entity) => Some(entity),
 		};
 
 		let entity_source_root = entity_source_root_opt
@@ -212,7 +219,7 @@ mod test {
 		let mut app = App::new();
 		app.init_resource::<EntitySubject>();
 		app.add_plugins(DescendantCollectorPlugin::<EntityAccumulator>::new(
-			DescendantRootPosition::Child,
+			HierarchyRootPosition::Child,
 		));
 		app.add_systems(Startup, setup_entities);
 		app.update(); // Startup

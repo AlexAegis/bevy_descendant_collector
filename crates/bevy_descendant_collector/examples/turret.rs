@@ -16,7 +16,7 @@ pub struct TurretModelAssets {
 /// This struct will be populated from a loaded gltf scene, based on name paths.
 #[derive(Component, EntityCollectorTarget, Reflect, InspectorOptions)]
 #[reflect(InspectorOptions)]
-#[name_path("Armature")]
+#[name_path("Armature")] // This is only used when the root has to be automatically discovered, like for scenes
 pub struct MyTurretArmature {
 	#[name_path()]
 	pub root: Entity,
@@ -43,7 +43,7 @@ fn main() {
 		.add_plugins((
 			DefaultPlugins,
 			WorldInspectorPlugin::new(),
-			DescendantCollectorPlugin::<MyTurretArmature>::new(DescendantRootPosition::Scene),
+			DescendantCollectorPlugin::<MyTurretArmature>::new(HierarchyRootPosition::Scene),
 		))
 		.register_type::<MyTurretArmature>()
 		.add_loading_state(
