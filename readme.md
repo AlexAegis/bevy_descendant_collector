@@ -16,7 +16,7 @@ Running the example:
 cargo run -p bevy_descendant_collector --example turret
 ```
 
-Imagine you have a [model file](/assets/models/simple_turret.blend) with the
+Imagine you have a [model file](/crates/bevy_descendant_collector/assets/models/simple_turret.blend) with the
 following structure in Blender:
 
 ```sh

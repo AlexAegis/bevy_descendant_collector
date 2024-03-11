@@ -1,8 +1,19 @@
-name: CI
+name: ci
 
 on:
-  pull_request:
   push:
+    branches: "**"
+  pull_request:
+    branches: "**"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
 
 jobs:
   test:
