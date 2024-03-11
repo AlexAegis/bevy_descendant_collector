@@ -1,9 +1,14 @@
 [package]
 name = "bevy_descendant_collector"
 description = "Bevy crate to collect named entities into a single component"
-license = "MIT"
 version = "0.1.0"
 edition = "2021"
+
+homepage.workspace = true
+repository.workspace = true
+documentation.workspace = true
+authors.workspace = true
+license.workspace = true
 
 [lints]
 workspace = true

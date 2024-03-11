@@ -3,6 +3,12 @@ resolver = "2"
 
 members = ["crates/*"]
 
+package.homepage = "https://github.com/AlexAegis/bevy_descendant_collector"
+package.repository = "https://github.com/AlexAegis/bevy_descendant_collector"
+package.documentation = "https://github.com/AlexAegis/bevy_descendant_collector"
+package.authors = ["alexaegis"]
+package.license = "MIT"
+
 [workspace.lints.clippy]
 type_complexity = "allow"
 
