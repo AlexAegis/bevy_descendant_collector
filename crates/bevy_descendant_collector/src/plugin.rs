@@ -2,15 +2,15 @@ use std::marker::PhantomData;
 
 use bevy::prelude::*;
 
-use crate::{find_named_entity, helpers::find_named_grandchild};
+use crate::{collect_named_entity_paths, find_named_entity, helpers::find_named_grandchild};
 
-/// Implemented by the Armature derive trait, used by the DescendantCollectorPlugin
+/// Implemented by the EntityCollectorTarget derive trait, used by the DescendantCollectorPlugin
 pub trait DescendantLoader {
 	fn get_root_entity_name() -> &'static str;
 
 	/// Should be executed only once, after the scene is loaded
 	/// entity_source_root is the entity where the resolution of name paths begins
-	/// entity_map_target is where the created Armature component will be inserted to
+	/// entity_map_target is where the created component will be inserted to
 	fn collect_descendants(
 		commands: &mut Commands,
 		entity_source_root: Entity,
@@ -111,8 +111,8 @@ fn collect_descendants_after_load<T: DescendantLoader + Component>(
 	>,
 	name_query: Query<(Entity, Option<&Name>, Option<&Children>)>,
 ) {
-	for scenes_just_added in collector_targets_added.iter() {
-		let entity_map_target = scenes_just_added.0;
+	for targets_just_added in collector_targets_added.iter() {
+		let entity_map_target = targets_just_added.0;
 
 		let root_entity_name = T::get_root_entity_name();
 
@@ -127,8 +127,15 @@ fn collect_descendants_after_load<T: DescendantLoader + Component>(
 			HierarchyRootPosition::Fixed(entity) => Some(entity),
 		};
 
-		let entity_source_root = entity_source_root_opt
-			.unwrap_or_else(|| panic!("Root of armature not found for {}", root_entity_name));
+		let entity_source_root = entity_source_root_opt.unwrap_or_else(|| {
+			// TODO: Should collect non-named entities up to a depth, this is only used for these prints so it's okay.
+			let named_entity_paths = collect_named_entity_paths(entity_map_target, &name_query);
+
+			panic!(
+				"Root of hierarchy not found for {}. Actual name paths from the target entity:\n{:#?}",
+				root_entity_name, named_entity_paths
+			);
+		});
 
 		T::collect_descendants(
 			&mut commands,

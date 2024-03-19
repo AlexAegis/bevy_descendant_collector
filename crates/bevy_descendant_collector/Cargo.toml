@@ -22,4 +22,4 @@ bevy_descendant_collector_derive = { version = "0.1.0", path = "../bevy_descenda
 
 [dev-dependencies]
 bevy_asset_loader = { version = "0.20.0" }
-bevy-inspector-egui = { version = "0.23.2" }
+bevy-inspector-egui = { version = "0.23.4" }

@@ -18,6 +18,6 @@ proc-macro = true
 
 [dependencies]
 bevy = { version = "0.13" }
-proc-macro2 = { version = "1.0.78" }
+proc-macro2 = { version = "1.0.79" }
 quote = { version = "1.0.35" }
-syn = { version = "2.0.48" }
+syn = { version = "2.0.53" }
