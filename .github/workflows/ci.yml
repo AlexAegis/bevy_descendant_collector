@@ -1,4 +1,4 @@
-name: ci
+name: cicd
 
 on:
   push:
@@ -19,50 +19,92 @@ jobs:
   test:
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - name: Checkout repository
+      - name: checkout
         uses: actions/checkout@v4
         with:
+          fetch-depth: 1
+          submodules: true
           lfs: true
-      - name: Checkout LFS objects
-        run: git lfs checkout
-      - name: Install rust toolchain
+      - name: rust toolchain
         uses: dtolnay/rust-toolchain@master
         with:
           toolchain: stable
-      - name: Cache
+      - name: cache
         uses: Swatinem/rust-cache@v2
-      - name: Install alsa and udev
+      - name: install alsa and udev (linux)
         if: runner.os == 'linux'
         run: sudo apt-get update; sudo apt-get install --no-install-recommends libasound2-dev libudev-dev
-      - name: Test
-        run: cargo test
-      - name: Run doc tests with all features (this also compiles README examples)
-        run: cargo test --workspace --doc --all-features
+      - name: test
+        run: cargo test --workspace --all-features
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: checkout
         uses: actions/checkout@v4
         with:
+          fetch-depth: 1
+          submodules: true
           lfs: true
-      - name: Checkout LFS objects
-        run: git lfs checkout
-      - name: Install rust toolchain
+      - name: rust toolchain
         uses: dtolnay/rust-toolchain@master
         with:
           toolchain: stable
           components: rustfmt, clippy
-      - name: Cache
+      - name: cache
         uses: Swatinem/rust-cache@v2
-      - name: Install alsa and udev
+      - name: install alsa and udev (linux)
         run: sudo apt-get update; sudo apt-get install --no-install-recommends libasound2-dev libudev-dev
-      - name: Run clippy
-        run: cargo clippy --workspace --all-targets --all-features
-      - name: Check format
+      - name: clippy
+        run: cargo clippy --workspace --all-targets --all-features -- -D warnings
+      - name: format
         run: cargo fmt --all -- --check
+  mdbook:
+    runs-on: ubuntu-latest
+    needs: [test, lint]
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          submodules: true
+          lfs: true
+      - name: setup mdbook
+        uses: peaceiris/actions-mdbook@v2
+        with:
+          mdbook-version: "latest"
+      - name: build mdbook
+        run: mdbook build
+      - name: setup pages
+        uses: actions/configure-pages@v4
+        if: |
+          github.ref_name == github.event.repository.default_branch &&
+          github.event_name != 'pull_request'
+      - name: upload artifact
+        uses: actions/upload-pages-artifact@v3
+        if: |
+          github.ref_name == github.event.repository.default_branch && 
+          github.event_name != 'pull_request'
+        with:
+          path: "target/book"
+  deploy-github-pages:
+    name: deploy github pages
+    if: |
+      github.ref_name == github.event.repository.default_branch && 
+      github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    needs: [mdbook]
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: deploy to github pages
+        uses: actions/deploy-pages@v4
+        id: deployment
   release:
     if: |
       github.ref_name == github.event.repository.default_branch &&
@@ -70,19 +112,19 @@ jobs:
     runs-on: ubuntu-latest
     needs: [test, lint]
     steps:
-      - name: Checkout repository
+      - name: checkout
         uses: actions/checkout@v4
         with:
+          fetch-depth: 1
+          submodules: true
           lfs: true
-      - name: Checkout LFS objects
-        run: git lfs checkout
-      - name: Install rust toolchain
+      - name: rust toolchain
         uses: dtolnay/rust-toolchain@master
         with:
           toolchain: stable
-      - name: Cache
+      - name: cache
         uses: Swatinem/rust-cache@v2
-      - name: Install alsa and udev
+      - name: install alsa and udev (linux)
         if: runner.os == 'linux'
         run: sudo apt-get update; sudo apt-get install --no-install-recommends libasound2-dev libudev-dev
       - uses: katyo/publish-crates@v2

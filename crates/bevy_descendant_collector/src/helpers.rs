@@ -149,7 +149,7 @@ mod test {
 	) {
 		let root_entity = entity_subject.root.expect("root should be defined");
 
-		let my_baz = find_named_entity(root_entity, &named_query, &vec!["foo2", "bar", "baz"]);
+		let my_baz = find_named_entity(root_entity, &named_query, &["foo2", "bar", "baz"]);
 
 		assert!(my_baz.is_some());
 

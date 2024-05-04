@@ -1,13 +1,15 @@
 [workspace]
 resolver = "2"
-
 members = ["crates/*"]
+default-members = ["crates/bevy_descendant_collector"]
 
-package.homepage = "https://github.com/AlexAegis/bevy_descendant_collector"
-package.repository = "https://github.com/AlexAegis/bevy_descendant_collector"
-package.documentation = "https://github.com/AlexAegis/bevy_descendant_collector"
-package.authors = ["alexaegis"]
-package.license = "MIT"
+[workspace.package]
+edition = "2021"
+homepage = "https://github.com/AlexAegis/bevy_descendant_collector"
+repository = "https://github.com/AlexAegis/bevy_descendant_collector"
+documentation = "https://github.com/AlexAegis/bevy_descendant_collector"
+authors = ["alexaegis"]
+license = "MIT"
 
 [workspace.lints.clippy]
 type_complexity = "allow"
@@ -19,3 +21,11 @@ opt-level = 1
 # Enable high optimizations for dependencies (incl. Bevy), but not for our code:
 [profile.dev.package."*"]
 opt-level = 3
+
+[workspace.dependencies]
+bevy = { version = "0.13" }                  # Keep it loose, don't lock on patch versions
+proc-macro2 = { version = "1.0.81" }
+quote = { version = "1.0.36" }
+syn = { version = "2.0.60" }
+bevy_asset_loader = { version = "0.20.1" }
+bevy-inspector-egui = { version = "0.24.0" }

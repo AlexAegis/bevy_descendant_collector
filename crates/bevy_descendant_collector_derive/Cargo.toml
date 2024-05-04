@@ -1,9 +1,9 @@
 [package]
 name = "bevy_descendant_collector_derive"
 description = "Derive macro for bevy_descendant_collector"
-version = "0.1.0"
-edition = "2021"
+version = "0.1.1"
 
+edition.workspace = true
 homepage.workspace = true
 repository.workspace = true
 documentation.workspace = true
@@ -17,7 +17,7 @@ workspace = true
 proc-macro = true
 
 [dependencies]
-bevy = { version = "0.13" }
-proc-macro2 = { version = "1.0.79" }
-quote = { version = "1.0.35" }
-syn = { version = "2.0.53" }
+bevy = { workspace = true }
+proc-macro2 = { workspace = true }
+quote = { workspace = true }
+syn = { workspace = true }

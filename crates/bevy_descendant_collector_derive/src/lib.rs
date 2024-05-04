@@ -48,7 +48,7 @@ pub fn entity_collector_target(input: proc_macro::TokenStream) -> proc_macro::To
 				format!("Named element not found for {struct_name} at {path}. Actual name paths are:\n")
 			};
 			quote! {
-				#ident: bevy_descendant_collector::find_named_entity(entity_source_root, &named_query, &vec![#path]).unwrap_or_else(|| {
+				#ident: bevy_descendant_collector::find_named_entity(entity_source_root, &named_query, &[#path]).unwrap_or_else(|| {
 					let named_entity_paths = bevy_descendant_collector::collect_named_entity_paths(entity_source_root, &named_query);
 					panic!("{} {:#?}", #error_msg, named_entity_paths);
 				}),

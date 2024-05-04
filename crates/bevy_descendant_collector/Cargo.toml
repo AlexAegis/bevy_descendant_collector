@@ -1,9 +1,9 @@
 [package]
 name = "bevy_descendant_collector"
 description = "Bevy crate to collect named entities into a single component"
-version = "0.1.0"
-edition = "2021"
+version = "0.1.1"
 
+edition.workspace = true
 homepage.workspace = true
 repository.workspace = true
 documentation.workspace = true
@@ -17,9 +17,9 @@ workspace = true
 dev = ["bevy/dynamic_linking"]
 
 [dependencies]
-bevy = { version = "0.13" }
-bevy_descendant_collector_derive = { version = "0.1.0", path = "../bevy_descendant_collector_derive" }
+bevy = { workspace = true }
+bevy_descendant_collector_derive = { version = "0.1.1", path = "../bevy_descendant_collector_derive" }
 
 [dev-dependencies]
-bevy_asset_loader = { version = "0.20.0" }
-bevy-inspector-egui = { version = "0.23.4" }
+bevy_asset_loader = { workspace = true }
+bevy-inspector-egui = { workspace = true }
