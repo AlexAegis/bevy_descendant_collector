@@ -61,9 +61,19 @@ jobs:
         run: sudo apt-get update; sudo apt-get install --no-install-recommends libasound2-dev libudev-dev
       - name: check format and clippy
         run: cargo make lint
+  check-pages:
+    runs-on: ubuntu-latest
+    outputs:
+      pages_enabled: ${{ steps.check_pages.outputs.is_enabled }}
+    steps:
+      - name: check if github pages is enabled
+        id: check_pages
+        uses: AlexAegis/check-github-pages@v1
   mdbook:
     runs-on: ubuntu-latest
-    needs: [test, lint]
+    needs: [test, lint, check-pages]
+    if: |
+      needs.check-pages.outputs.pages_enabled == 'true'
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
@@ -94,9 +104,10 @@ jobs:
     name: deploy github pages
     if: |
       github.ref_name == github.event.repository.default_branch && 
-      github.event_name != 'pull_request'
+      github.event_name != 'pull_request' &&
+      needs.check-pages.outputs.pages_enabled == 'true'
     runs-on: ubuntu-latest
-    needs: [mdbook]
+    needs: [mdbook, check-pages]
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
