@@ -25,7 +25,14 @@ install_crate = { rustup_component_name = "rustfmt" }
 description = "Install crate mdbook for building the documentation"
 workspace = false
 private = true
+dependencies = ["install-mdbook-mermaid"]
 install_crate = "mdbook"
+
+[tasks.install-mdbook-mermaid]
+description = "Install crate mdbook-mermaid for mermaid support"
+workspace = false
+private = true
+install_crate = "mdbook-mermaid"
 
 [tasks.install-trunk]
 condition = { env = { "CARGO_REQUIRE_WEB_SUPPORT" = "true" } }

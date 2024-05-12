@@ -82,12 +82,16 @@ jobs:
         with:
           fetch-depth: 1
           submodules: true
-      - name: setup mdbook
-        uses: peaceiris/actions-mdbook@v2
+      - name: rust toolchain
+        uses: dtolnay/rust-toolchain@master
         with:
-          mdbook-version: "latest"
-      - name: build mdbook
-        run: mdbook build
+          toolchain: stable
+      - name: cache
+        uses: Swatinem/rust-cache@v2
+      - name: install cargo-make
+        run: cargo install cargo-make
+      - name: build book
+        run: cargo make book-build
       - name: setup pages
         uses: actions/configure-pages@v4
         if: |

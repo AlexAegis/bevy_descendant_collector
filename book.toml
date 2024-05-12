@@ -9,7 +9,9 @@ src = "docs"
 [build]
 build-dir = "target/book"
 
+[preprocessor.mermaid]
+command = "mdbook-mermaid"
+
 [output.html]
-additional-css = []
-additional-js = []
+additional-js = ["docs/assets/mermaid.min.js", "docs/mermaid-init.js"]
 git-repository-url = "https://github.com/AlexAegis/bevy_descendant_collector"
