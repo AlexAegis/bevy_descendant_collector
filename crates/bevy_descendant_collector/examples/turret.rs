@@ -39,12 +39,12 @@ enum ExampleAppState {
 
 fn main() {
 	App::new()
-		.init_state::<ExampleAppState>()
 		.add_plugins((
 			DefaultPlugins,
 			WorldInspectorPlugin::new(),
 			DescendantCollectorPlugin::<MyTurretArmature>::new(HierarchyRootPosition::Scene),
 		))
+		.init_state::<ExampleAppState>()
 		.register_type::<MyTurretArmature>()
 		.add_loading_state(
 			LoadingState::new(ExampleAppState::Loading)

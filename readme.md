@@ -1,4 +1,4 @@
-# [bevy_descendant_collector](https://github.com/AlexAegis/bevy_descendant_collector)
+# [bevy\_descendant\_collector](https://github.com/AlexAegis/bevy_descendant_collector)
 
 [![ci](https://github.com/AlexAegis/bevy_descendant_collector/actions/workflows/ci.yml/badge.svg)](https://github.com/AlexAegis/bevy_descendant_collector/actions/workflows/ci.yml)
 
@@ -10,8 +10,8 @@ complex queries to retrieve deep entities from the scene hierarchy.
 
 ## Requirements
 
-- [Git LFS](https://git-lfs.github.com/)
-- [Latest Rust Stable](https://rustup.rs/)
+* [Git LFS](https://git-lfs.github.com/)
+* [Latest Rust Stable](https://rustup.rs/)
 
 ## Development
 
@@ -19,17 +19,17 @@ This repository is using `cargo-make`, it will take care of installing all
 required cargo extensions and rustup components used in this repository.
 
 1. Run `scripts/setup.sh` (Or run `cargo install cargo-make`)
-2. (Optional) Install the rest of the tooling/cargo extensions using 
+2. (Optional) Install the rest of the tooling/cargo extensions using
    `cargo make setup`
 
 ### `cargo-make` tasks
 
-- `cargo make all` to run everything that could make ci fail (Everything below)
-- `cargo make build` to build all crates
-- `cargo make test` to test all crates
-- `cargo make format` to format all crates
-- `cargo make lint` to lint all crates using `clippy` and `rustfmt`
-- `cargo make book-build` to build the documentation book
+* `cargo make all` to run everything that could make ci fail (Everything below)
+* `cargo make build` to build all crates
+* `cargo make test` to test all crates
+* `cargo make format` to format all crates
+* `cargo make lint` to lint all crates using `clippy` and `rustfmt`
+* `cargo make book-build` to build the documentation book
 
 ## Example
 
@@ -83,7 +83,7 @@ app.add_plugins(DescendantCollectorPlugin::<MyTurretArmature>::new(HierarchyRoot
 ```
 
 And lastly, I need to identify the entities where I want `MyTurretArmature` to
-be inserted into! To do this, when you spawn this scene, add the target 
+be inserted into! To do this, when you spawn this scene, add the target
 component to your entity.
 
 ```rs
@@ -114,6 +114,7 @@ cargo install cargo-expand
 
 ## Bevy Compatibility Table
 
-| Bevy | bevy_descendant_collector |
+| Bevy | bevy\_descendant\_collector |
 | ---- | ------------------------- |
+| 0.14 | 0.2                       |
 | 0.13 | 0.1                       |
