@@ -1,5 +1,6 @@
-# [bevy_descendant_collector](https://github.com/AlexAegis/bevy_descendant_collector)
+# [bevy\_descendant\_collector](https://github.com/AlexAegis/bevy_descendant_collector)
 
+[![crates.io](https://img.shields.io/crates/v/bevy_descendant_collector.svg)](https://crates.io/crates/bevy_descendant_collector)
 [![ci](https://github.com/AlexAegis/bevy_descendant_collector/actions/workflows/ci.yml/badge.svg)](https://github.com/AlexAegis/bevy_descendant_collector/actions/workflows/ci.yml)
 
 This crate lets you map a complex entity tree onto a single component as long
@@ -60,7 +61,7 @@ app.add_plugins(DescendantCollectorPlugin::<MyTurretArmature>::new(HierarchyRoot
 ```
 
 And lastly, I need to identify the entities where I want `MyTurretArmature` to
-be inserted into! To do this, when you spawn this scene, add the target 
+be inserted into! To do this, when you spawn this scene, add the target
 component to your entity.
 
 ```rs
@@ -86,11 +87,12 @@ cargo install cargo-expand
 ```
 
 ```sh
- cargo expand --example turret
+cargo expand --example turret
 ```
 
 ## Bevy Compatibility Table
 
-| Bevy | bevy_descendant_collector |
+| Bevy | bevy\_descendant\_collector |
 | ---- | ------------------------- |
+| 0.14 | 0.2                       |
 | 0.13 | 0.1                       |

@@ -1,5 +1,6 @@
 # [bevy\_descendant\_collector](https://github.com/AlexAegis/bevy_descendant_collector)
 
+[![crates.io](https://img.shields.io/crates/v/bevy_descendant_collector.svg)](https://crates.io/crates/bevy_descendant_collector)
 [![ci](https://github.com/AlexAegis/bevy_descendant_collector/actions/workflows/ci.yml/badge.svg)](https://github.com/AlexAegis/bevy_descendant_collector/actions/workflows/ci.yml)
 
 This crate lets you map a complex entity tree onto a single component as long
@@ -109,7 +110,7 @@ cargo install cargo-expand
 ```
 
 ```sh
- cargo expand --example turret
+cargo expand --example turret
 ```
 
 ## Bevy Compatibility Table

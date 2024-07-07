@@ -2,6 +2,7 @@
 name = "bevy_descendant_collector"
 description = "Bevy crate to collect named entities into a single component"
 version = "0.2.0"
+readme = "readme.md"
 
 edition.workspace = true
 homepage.workspace = true
