@@ -37,7 +37,7 @@ enum ExampleAppState {
 	Loaded,
 }
 
-fn main() {
+fn main() -> AppExit {
 	App::new()
 		.add_plugins((
 			DefaultPlugins,
@@ -53,7 +53,7 @@ fn main() {
 		)
 		.add_systems(Startup, spawn_example_scene)
 		.add_systems(OnEnter(ExampleAppState::Loaded), spawn_turret)
-		.run();
+		.run()
 }
 
 fn spawn_turret(mut commands: Commands, turret_model_assets: Res<TurretModelAssets>) {
