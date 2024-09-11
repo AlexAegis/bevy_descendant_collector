@@ -3,7 +3,9 @@ use quote::quote;
 use syn::{parse_macro_input, Attribute, DeriveInput, Meta};
 
 fn read_attribute(attrs: Vec<Attribute>, attribute_name: &str) -> Option<TokenStream> {
-	let name_path_attr = attrs.iter().find(|attr| attr.path().is_ident("name_path"));
+	let name_path_attr = attrs
+		.iter()
+		.find(|attr| attr.path().is_ident(attribute_name));
 
 	if let Some(attr) = name_path_attr {
 		if let Meta::List(list) = &attr.meta {

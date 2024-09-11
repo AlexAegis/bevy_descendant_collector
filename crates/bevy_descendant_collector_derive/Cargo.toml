@@ -17,7 +17,7 @@ workspace = true
 proc-macro = true
 
 [dependencies]
-bevy = { workspace = true }
+bevy = { workspace = true, default-features = false }
 proc-macro2 = { workspace = true }
 quote = { workspace = true }
 syn = { workspace = true }
