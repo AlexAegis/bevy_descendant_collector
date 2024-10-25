@@ -58,22 +58,19 @@ fn main() -> AppExit {
 
 fn spawn_turret(mut commands: Commands, turret_model_assets: Res<TurretModelAssets>) {
 	commands.spawn((
-		SceneBundle {
-			scene: turret_model_assets.turret_model.clone(),
-			..default()
-		},
+		SceneRoot(turret_model_assets.turret_model.clone()),
 		DescendantCollectorTarget::<MyTurretArmature>::default(), // marking this entity that it needs an accumulator
 	));
 }
 
 fn spawn_example_scene(mut commands: Commands) {
-	commands.spawn(Camera3dBundle {
-		transform: Transform::from_xyz(1., 4., 5.).looking_at(Vec3::ZERO, Vec3::Y),
-		..default()
-	});
+	commands.spawn((
+		Camera3d::default(),
+		Transform::from_xyz(1., 4., 5.).looking_at(Vec3::ZERO, Vec3::Y),
+	));
 
-	commands.spawn(PointLightBundle {
-		transform: Transform::from_xyz(2.0, 0.6, 2.0).looking_at(Vec3::ZERO, Vec3::Y),
-		..default()
-	});
+	commands.spawn((
+		PointLight::default(),
+		Transform::from_xyz(2.0, 0.6, 2.0).looking_at(Vec3::ZERO, Vec3::Y),
+	));
 }
