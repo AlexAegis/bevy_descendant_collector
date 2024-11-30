@@ -23,9 +23,9 @@ opt-level = 1
 opt-level = 3
 
 [workspace.dependencies]
-bevy = { version = "0.15.0-rc.1", default-features = false }                                                                 # Keep it loose, don't lock on patch versions
-proc-macro2 = { version = "1.0.89" }
+bevy = { version = "0.15.0", default-features = false }                                                                      # Keep it loose, don't lock on patch versions
+proc-macro2 = { version = "1.0.92" }
 quote = { version = "1.0.37" }
-syn = { version = "2.0.85" }
+syn = { version = "2.0.90" }
 bevy_asset_loader = { version = "0.22.0-rc.1", git = "https://github.com/NiklasEi/bevy_asset_loader", branch = "bevy-0-15" }
-bevy-inspector-egui = { version = "0.27.0" }
+bevy-inspector-egui = { version = "0.28.0", git = "https://github.com/Vrixyz/bevy-inspector-egui", branch = "bevy_0.15" }

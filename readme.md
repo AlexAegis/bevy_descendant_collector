@@ -37,7 +37,7 @@ required cargo extensions and rustup components used in this repository.
 Running the example:
 
 ```sh
-cargo run -p bevy_descendant_collector --example turret
+cargo run -p bevy_descendant_collector --example turret --features example
 ```
 
 Imagine you have a [model file](/crates/bevy_descendant_collector/assets/models/simple_turret.blend) with the
