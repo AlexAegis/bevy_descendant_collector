@@ -14,7 +14,7 @@ complex queries to retrieve deep entities from the scene hierarchy.
 Running the example:
 
 ```sh
-cargo run -p bevy_descendant_collector --example turret
+cargo run -p bevy_descendant_collector --example turret --features example
 ```
 
 Imagine you have a [model file](/crates/bevy_descendant_collector/assets/models/simple_turret.blend) with the
@@ -94,5 +94,6 @@ cargo expand --example turret
 
 | Bevy | bevy\_descendant\_collector |
 | ---- | ------------------------- |
+| 0.15 | 0.3                       |
 | 0.14 | 0.2                       |
 | 0.13 | 0.1                       |

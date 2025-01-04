@@ -15,6 +15,7 @@ pub struct TurretModelAssets {
 
 /// This struct will be populated from a loaded gltf scene, based on name paths.
 #[derive(Component, EntityCollectorTarget, Reflect, InspectorOptions)]
+#[require(Name(|| Name::new("Turret")))]
 #[reflect(InspectorOptions)]
 #[name_path("Armature")] // This is only used when the root has to be automatically discovered, like for scenes
 pub struct MyTurretArmature {
