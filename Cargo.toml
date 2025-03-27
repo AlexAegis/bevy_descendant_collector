@@ -27,5 +27,4 @@ bevy = { version = "0.15", default-features = false } # Keep it loose, don't loc
 proc-macro2 = { version = "1.0" }
 quote = { version = "1.0" }
 syn = { version = "2.0" }
-bevy_asset_loader = { version = "0.22.0" }
-bevy-inspector-egui = { version = "0.28.1" }
+bevy-inspector-egui = { version = "0.30.0" }

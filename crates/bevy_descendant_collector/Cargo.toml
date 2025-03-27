@@ -24,6 +24,7 @@ example = [
     "bevy/bevy_render",
     "bevy/bevy_gltf",
     "bevy/bevy_winit",
+    "bevy/bevy_picking",
     "bevy/x11",
     "bevy/tonemapping_luts",
 ]
@@ -33,7 +34,6 @@ bevy = { workspace = true, default-features = false }
 bevy_descendant_collector_derive = { version = "0.3.0", path = "../bevy_descendant_collector_derive" }
 
 [dev-dependencies]
-bevy_asset_loader = { workspace = true }
 bevy-inspector-egui = { workspace = true }
 
 [[example]]
