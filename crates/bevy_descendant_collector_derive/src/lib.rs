@@ -39,7 +39,7 @@ pub fn entity_collector_target(input: proc_macro::TokenStream) -> proc_macro::To
 	let assignments = fields
 		.iter()
 		.map(|field| {
-			let armature_field_entry_name = read_attribute(field.attrs.clone(), "name_path").expect("Field's that are not name_path's are not premitted");
+			let armature_field_entry_name = read_attribute(field.attrs.clone(), "name_path").expect("Field's that are not name_path's are not permitted");
 			let ident = field.ident.as_ref().expect("The variable must have a name!");
 			(ident, armature_field_entry_name)
 		})
