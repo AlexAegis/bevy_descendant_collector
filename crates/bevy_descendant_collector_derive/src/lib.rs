@@ -1,6 +1,6 @@
 use proc_macro2::TokenStream;
 use quote::quote;
-use syn::{parse_macro_input, Attribute, DeriveInput, Meta};
+use syn::{Attribute, DeriveInput, Meta, parse_macro_input};
 
 fn read_attribute(attrs: Vec<Attribute>, attribute_name: &str) -> Option<TokenStream> {
 	let name_path_attr = attrs

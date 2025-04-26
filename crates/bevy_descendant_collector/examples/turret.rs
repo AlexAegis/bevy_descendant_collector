@@ -1,13 +1,14 @@
 use bevy::prelude::*;
 use bevy_descendant_collector::*;
+use bevy_inspector_egui::InspectorOptions;
+use bevy_inspector_egui::bevy_egui::EguiPlugin;
 use bevy_inspector_egui::inspector_options::ReflectInspectorOptions;
 use bevy_inspector_egui::quick::WorldInspectorPlugin;
-use bevy_inspector_egui::InspectorOptions;
 
 /// This struct will be populated from a loaded gltf scene, based on name paths.
 #[derive(Component, EntityCollectorTarget, Reflect, InspectorOptions)]
-#[require(Name(|| Name::new("Turret")))]
-#[reflect(InspectorOptions)]
+#[require(Name::new("Turret"))]
+#[reflect(Component, InspectorOptions)]
 #[name_path("Armature")] // This is only used when the root has to be automatically discovered, like for scenes
 pub struct MyTurretArmature {
 	#[name_path()]
@@ -26,6 +27,9 @@ fn main() -> AppExit {
 	App::new()
 		.add_plugins((
 			DefaultPlugins,
+			EguiPlugin {
+				enable_multipass_for_primary_context: true,
+			},
 			WorldInspectorPlugin::new(),
 			DescendantCollectorPlugin::<MyTurretArmature>::new(HierarchyRootPosition::Scene),
 		))
