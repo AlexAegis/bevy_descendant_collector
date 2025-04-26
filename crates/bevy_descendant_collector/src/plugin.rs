@@ -207,14 +207,14 @@ mod test {
 
 	fn assert_accumulator(
 		entity_subject: Res<EntitySubject>,
-		named_query: Query<(Entity, &EntityAccumulator)>,
+		accumulator_query: Query<(Entity, &EntityAccumulator)>,
 	) {
 		let spawned_root_entity = entity_subject.root.expect("root should be defined");
 		let spawned_baz_entity = entity_subject.baz.expect("baz should be defined");
 		let spawned_baz2_entity = entity_subject.baz2.expect("baz2 should be defined");
 
-		let (retrieved_root_entity, retrieved_accumulator) = named_query.get_single().expect("asd");
-		println!("assert_accumulator");
+		let (retrieved_root_entity, retrieved_accumulator) =
+			accumulator_query.single().expect("Accumulator not found!");
 
 		assert_eq!(retrieved_root_entity, spawned_root_entity);
 		assert_eq!(retrieved_accumulator.baz, spawned_baz_entity);

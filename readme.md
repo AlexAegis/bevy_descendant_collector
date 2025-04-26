@@ -58,14 +58,14 @@ You can define a component like this:
 #[derive(Component, EntityCollectorTarget)]
 #[name_path("Armature")]
 pub struct MyTurretArmature {
-	#[name_path("Bone.Root")]
-	pub base: Entity,
-	#[name_path("Bone.Root", "Bone.Neck")]
-	pub neck: Entity,
-	#[name_path("Bone.Root", "Bone.Neck", "Bone.Head")]
-	pub head: Entity,
-	#[name_path("Bone.Head.IK_CTRL")]
-	pub head_ik_ctrl: Entity,
+ #[name_path("Bone.Root")]
+ pub base: Entity,
+ #[name_path("Bone.Root", "Bone.Neck")]
+ pub neck: Entity,
+ #[name_path("Bone.Root", "Bone.Neck", "Bone.Head")]
+ pub head: Entity,
+ #[name_path("Bone.Head.IK_CTRL")]
+ pub head_ik_ctrl: Entity,
 }
 ```
 
@@ -89,13 +89,13 @@ component to your entity.
 
 ```rs
 fn spawn_turret(mut commands: Commands, turret_model_assets: Res<TurretModelAssets>) {
-	commands.spawn((
-		SceneBundle {
-			scene: turret_model_assets.turret_model.clone(),
-			..default()
-		},
-		DescendantCollectorTarget::<MyTurretArmature>::default(),
-	));
+ commands.spawn((
+  SceneBundle {
+   scene: turret_model_assets.turret_model.clone(),
+   ..default()
+  },
+  DescendantCollectorTarget::<MyTurretArmature>::default(),
+ ));
 }
 ```
 
@@ -117,6 +117,7 @@ cargo expand --example turret
 
 | Bevy | bevy\_descendant\_collector |
 | ---- | ------------------------- |
+| 0.16 | 0.4                       |
 | 0.15 | 0.3                       |
 | 0.14 | 0.2                       |
 | 0.13 | 0.1                       |
