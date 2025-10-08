@@ -27,13 +27,10 @@ fn main() -> AppExit {
 	App::new()
 		.add_plugins((
 			DefaultPlugins,
-			EguiPlugin {
-				enable_multipass_for_primary_context: true,
-			},
+			EguiPlugin::default(),
 			WorldInspectorPlugin::new(),
 			DescendantCollectorPlugin::<MyTurretArmature>::new(HierarchyRootPosition::Scene),
 		))
-		.register_type::<MyTurretArmature>()
 		.add_systems(Startup, setup)
 		.run()
 }
