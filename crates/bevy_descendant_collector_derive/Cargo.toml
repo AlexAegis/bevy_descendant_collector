@@ -1,7 +1,9 @@
 [package]
 name = "bevy_descendant_collector_derive"
 description = "Derive macro for bevy_descendant_collector"
-version = "0.5.0"
+version = "0.5.1"
+
+publish = true
 
 edition.workspace = true
 homepage.workspace = true
