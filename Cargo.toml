@@ -25,10 +25,39 @@ opt-level = 1
 opt-level = 3
 
 [workspace.dependencies]
-bevy = { version = "0.17", default-features = false }     # Keep it loose, don't lock on patch versions
+bevy = { version = "0.17", default-features = false, features = [
+    "animation",
+    "bevy_asset",
+    "bevy_core_pipeline",
+    "bevy_gilrs",
+    "bevy_gizmos",
+    "bevy_gltf",
+    "bevy_log",
+    "bevy_mesh_picking_backend",
+    "bevy_pbr",
+    "bevy_picking",
+    "bevy_render",
+    "bevy_scene",
+    "bevy_sprite",
+    "bevy_state",
+    "bevy_text",
+    "bevy_window",
+    "bevy_winit",
+    "file_watcher",
+    "ktx2",
+    "multi_threaded",
+    "png",
+    "reflect_auto_register",
+    "std",
+    "tonemapping_luts",
+    "x11",
+    "zstd_rust",
+] } # Keep it loose, don't lock on patch versions
 bevy_app = { version = "0.17", default-features = false }
 bevy_ecs = { version = "0.17", default-features = false }
-proc-macro2 = { version = "1.0" }
-quote = { version = "1.0" }
-syn = { version = "2.0" }
-bevy-inspector-egui = { version = "0.35.0" }
+proc-macro2 = { version = "1.0", default-features = false }
+quote = { version = "1.0", default-features = false }
+syn = { version = "2.0", default-features = false }
+bevy-inspector-egui = { version = "0.35.0", default-features = false, features = [
+    "bevy_render",
+] }

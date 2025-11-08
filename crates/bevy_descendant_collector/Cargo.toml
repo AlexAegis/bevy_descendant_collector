@@ -1,7 +1,7 @@
 [package]
 name = "bevy_descendant_collector"
 description = "Bevy crate to collect named entities into a single component"
-version = "0.5.0"
+version = "0.5.1"
 readme = "../../readme.md"
 
 publish = true
@@ -23,32 +23,10 @@ example = ["dev"]
 [dependencies]
 bevy_app = { workspace = true, default-features = false }
 bevy_ecs = { workspace = true, default-features = false }
-bevy_descendant_collector_derive = { version = "0.5.0", path = "../bevy_descendant_collector_derive" }
+bevy_descendant_collector_derive = { version = "0.5.1", path = "../bevy_descendant_collector_derive" }
 
 [dev-dependencies]
-bevy = { workspace = true, default-features = false, features = [
-    "std",
-    "x11",
-    "wayland",
-    "reflect_auto_register",
-    "bevy_log",
-    "bevy_winit",
-    "bevy_state",
-    "bevy_window",
-    "bevy_pbr",
-    "bevy_sprite",
-    "bevy_text",
-    "bevy_core_pipeline",
-    "bevy_picking",
-    "bevy_gizmos",
-    "bevy_mesh_picking_backend",
-    "animation",
-    "png",
-    "zstd_rust",
-    "tonemapping_luts",
-    "ktx2",
-    "bevy_gltf",
-] }
+bevy = { workspace = true }
 bevy-inspector-egui = { workspace = true }
 
 [[example]]
