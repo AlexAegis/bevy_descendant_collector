@@ -1,4 +1,4 @@
-use bevy::prelude::*;
+use bevy_ecs::{entity::Entity, hierarchy::Children, name::Name, system::Query};
 
 pub fn find_named_entity(
 	root_entity: Entity,
@@ -13,7 +13,7 @@ pub fn find_named_entity(
 
 	let next_named_child = children_option
 		.iter()
-		.flat_map(|child_entity| named_query.get(child_entity))
+		.flat_map(|child_entity| named_query.get(*child_entity))
 		.filter_map(|(entity, name_opt, _children)| {
 			name_opt.and_then(|name| {
 				if name.as_str() == search_terms[0] {
@@ -38,10 +38,10 @@ pub fn find_named_grandchild(
 		.iter()
 		.flat_map(|(_e, _name, immediate_children)| immediate_children)
 		.flat_map(|children| children.iter())
-		.flat_map(|child| named_query.get(child))
+		.flat_map(|child| named_query.get(*child))
 		.flat_map(|(_e, _child_name, grand_children)| grand_children)
 		.flat_map(|grand_children| grand_children.iter())
-		.flat_map(|grand_child| named_query.get(grand_child))
+		.flat_map(|grand_child| named_query.get(*grand_child))
 		.find(|(_e, grand_child_name, _ggch)| {
 			grand_child_name.is_some_and(|name| target_name == name.to_string())
 		})
@@ -62,7 +62,7 @@ pub fn collect_named_entity_paths(
 		// If the root has children, start the recursion
 		if let Some(children) = children {
 			for child in children.iter() {
-				collect_paths_internal(child, &root_path, named_query, &mut paths);
+				collect_paths_internal(*child, &root_path, named_query, &mut paths);
 			}
 		} else if !root_path.is_empty() {
 			// If the root has no children but has a name, it's a valid path by itself
@@ -89,7 +89,7 @@ fn collect_paths_internal(
 				paths.push(new_path);
 			} else {
 				for child in children.iter() {
-					collect_paths_internal(child, &new_path, named_query, paths);
+					collect_paths_internal(*child, &new_path, named_query, paths);
 				}
 			}
 		} else {

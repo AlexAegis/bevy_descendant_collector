@@ -10,6 +10,8 @@ repository = "https://github.com/AlexAegis/bevy_descendant_collector"
 documentation = "https://github.com/AlexAegis/bevy_descendant_collector"
 authors = ["alexaegis"]
 license = "MIT"
+readme = "readme.md"
+
 
 [workspace.lints.clippy]
 type_complexity = "allow"
@@ -23,8 +25,10 @@ opt-level = 1
 opt-level = 3
 
 [workspace.dependencies]
-bevy = { version = "0.17", default-features = false } # Keep it loose, don't lock on patch versions
+bevy = { version = "0.17", default-features = false }     # Keep it loose, don't lock on patch versions
+bevy_app = { version = "0.17", default-features = false }
+bevy_ecs = { version = "0.17", default-features = false }
 proc-macro2 = { version = "1.0" }
 quote = { version = "1.0" }
 syn = { version = "2.0" }
-bevy-inspector-egui = { version = "0.34" }
+bevy-inspector-egui = { version = "0.35.0" }

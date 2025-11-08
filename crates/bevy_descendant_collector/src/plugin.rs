@@ -1,6 +1,15 @@
 use std::marker::PhantomData;
 
-use bevy::prelude::*;
+use bevy_app::{App, Plugin, PostUpdate};
+use bevy_ecs::{
+	component::Component,
+	entity::Entity,
+	hierarchy::Children,
+	name::Name,
+	query::{Added, Without},
+	resource::Resource,
+	system::{Commands, Query, Res},
+};
 
 use crate::{collect_named_entity_paths, find_named_entity, helpers::find_named_grandchild};
 
@@ -34,7 +43,7 @@ impl<T: DescendantLoader + Component> Default for DescendantCollectorTarget<T> {
 
 impl<T: DescendantLoader + Component> DescendantCollectorTarget<T> {
 	pub fn new() -> Self {
-		Self { ..default() }
+		Self::default()
 	}
 }
 
@@ -49,7 +58,7 @@ impl<T: DescendantLoader + Component> DescendantCollectorPlugin<T> {
 	pub fn new(relative_root_position: HierarchyRootPosition) -> Self {
 		Self {
 			relative_root_position,
-			..default()
+			..Default::default()
 		}
 	}
 }

@@ -2,7 +2,9 @@
 name = "bevy_descendant_collector"
 description = "Bevy crate to collect named entities into a single component"
 version = "0.5.0"
-readme = "readme.md"
+readme = "../../readme.md"
+
+publish = true
 
 edition.workspace = true
 homepage.workspace = true
@@ -16,25 +18,37 @@ workspace = true
 
 [features]
 dev = ["bevy/dynamic_linking"]
-example = [
-    "bevy/bevy_scene",
-    "bevy/bevy_core_pipeline",
-    "bevy/bevy_pbr",
-    "bevy/bevy_asset",
-    "bevy/bevy_render",
-    "bevy/bevy_gltf",
-    "bevy/bevy_winit",
-    "bevy/bevy_picking",
-    "bevy/x11",
-    "bevy/tonemapping_luts",
-    "bevy/reflect_auto_register",
-]
+example = ["dev"]
 
 [dependencies]
-bevy = { workspace = true, default-features = false }
+bevy_app = { workspace = true, default-features = false }
+bevy_ecs = { workspace = true, default-features = false }
 bevy_descendant_collector_derive = { version = "0.5.0", path = "../bevy_descendant_collector_derive" }
 
 [dev-dependencies]
+bevy = { workspace = true, default-features = false, features = [
+    "std",
+    "x11",
+    "wayland",
+    "reflect_auto_register",
+    "bevy_log",
+    "bevy_winit",
+    "bevy_state",
+    "bevy_window",
+    "bevy_pbr",
+    "bevy_sprite",
+    "bevy_text",
+    "bevy_core_pipeline",
+    "bevy_picking",
+    "bevy_gizmos",
+    "bevy_mesh_picking_backend",
+    "animation",
+    "png",
+    "zstd_rust",
+    "tonemapping_luts",
+    "ktx2",
+    "bevy_gltf",
+] }
 bevy-inspector-egui = { workspace = true }
 
 [[example]]
