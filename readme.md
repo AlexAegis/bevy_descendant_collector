@@ -122,3 +122,7 @@ cargo expand --example turret
 | 0.15 | 0.3                       |
 | 0.14 | 0.2                       |
 | 0.13 | 0.1                       |
+
+## For Maintainers
+
+See [contributing.md](https://github.com/AlexAegis/bevy_descendant_collector?tab=contributing-ov-file#contributing)
