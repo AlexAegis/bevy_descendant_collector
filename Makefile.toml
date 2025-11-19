@@ -227,6 +227,18 @@ args = [
     "test",
 ]
 
+[tasks.validate-codecov-yml]
+description = "Validates the codecov yml file. Only needed if the codecov.yml file is changed."
+workspace = false
+command = "curl"
+args = [
+    "-X",
+    "POST",
+    "--data-binary",
+    "@codecov.yml",
+    "https://codecov.io/validate",
+]
+
 [tasks.test-ci-run]
 description = "Tests the entire workspace"
 workspace = false
