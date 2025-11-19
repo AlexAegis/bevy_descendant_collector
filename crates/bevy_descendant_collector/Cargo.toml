@@ -19,6 +19,7 @@ workspace = true
 [features]
 dev = ["bevy/dynamic_linking"]
 example = ["dev"]
+test = []
 
 [dependencies]
 bevy_app = { workspace = true, default-features = false }

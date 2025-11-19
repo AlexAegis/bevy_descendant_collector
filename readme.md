@@ -1,4 +1,4 @@
-# [bevy\_descendant\_collector](https://github.com/AlexAegis/bevy_descendant_collector)
+# [bevy_descendant_collector](https://github.com/AlexAegis/bevy_descendant_collector)
 
 [![crates.io](https://img.shields.io/crates/v/bevy_descendant_collector.svg)](https://crates.io/crates/bevy_descendant_collector)
 [![ci](https://github.com/AlexAegis/bevy_descendant_collector/actions/workflows/ci.yml/badge.svg)](https://github.com/AlexAegis/bevy_descendant_collector/actions/workflows/ci.yml)
