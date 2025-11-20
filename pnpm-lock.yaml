@@ -337,8 +337,8 @@ packages:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
     engines: {node: '>= 6'}
 
-  glob@10.4.5:
-    resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
+  glob@10.5.0:
+    resolution: {integrity: sha512-DfXN8DfhJ7NH3Oe7cFmu3NCu1wKbkReJ8TorzSAFbSKrlNaQSKfIzqYqVY8zlbs2NLBbWpRiU52GX2PbaBVNkg==}
     hasBin: true
 
   globby@14.1.0:
@@ -1260,7 +1260,7 @@ snapshots:
   '@npmcli/map-workspaces@3.0.6':
     dependencies:
       '@npmcli/name-from-folder': 2.0.0
-      glob: 10.4.5
+      glob: 10.5.0
       minimatch: 9.0.5
       read-package-json-fast: 3.0.2
 
@@ -1269,7 +1269,7 @@ snapshots:
   '@npmcli/package-json@5.2.1':
     dependencies:
       '@npmcli/git': 5.0.8
-      glob: 10.4.5
+      glob: 10.5.0
       hosted-git-info: 7.0.2
       json-parse-even-better-errors: 3.0.2
       normalize-package-data: 6.0.2
@@ -1487,7 +1487,7 @@ snapshots:
     dependencies:
       is-glob: 4.0.3
 
-  glob@10.4.5:
+  glob@10.5.0:
     dependencies:
       foreground-child: 3.3.1
       jackspeak: 3.4.3
@@ -2842,7 +2842,7 @@ snapshots:
       concat-stream: 2.0.0
       debug: 4.4.3
       extend: 3.0.2
-      glob: 10.4.5
+      glob: 10.5.0
       ignore: 6.0.2
       is-empty: 1.2.0
       is-plain-obj: 4.1.0
