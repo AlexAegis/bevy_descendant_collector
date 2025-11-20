@@ -2,6 +2,7 @@
 
 [![crates.io](https://img.shields.io/crates/v/bevy_descendant_collector.svg)](https://crates.io/crates/bevy_descendant_collector)
 [![ci](https://github.com/AlexAegis/bevy_descendant_collector/actions/workflows/ci.yml/badge.svg)](https://github.com/AlexAegis/bevy_descendant_collector/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/github/AlexAegis/bevy_descendant_collector/graph/badge.svg?token=PQAsYtFjRN)](https://codecov.io/github/AlexAegis/bevy_descendant_collector)
 
 This crate lets you map a complex entity tree onto a single component as long
 as those entities (and their ancestors) are named.
