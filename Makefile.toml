@@ -180,13 +180,13 @@ description = "Tests the entire workspace"
 workspace = false
 dependencies = ["setup"]
 command = "cargo"
-args = ["test", "--workspace", "--all-features"]
+args = ["test", "--workspace", "--features", "test"]
 
 [tasks.each-test]
 description = "Tests individual projects"
 dependencies = ["setup"]
 command = "cargo"
-args = ["test", "--all-features"]
+args = ["test", "--features", "test"]
 
 [tasks.test-pre-build]
 description = "Pre builds the tests without running them"
@@ -198,7 +198,8 @@ args = [
     "--locked",
     "--workspace",
     "--all-targets",
-    "--all-features",
+    "--features",
+    "test",
 ]
 
 [tasks.test-coverage]
@@ -248,7 +249,8 @@ args = [
     "--locked",
     "--workspace",
     "--all-targets",
-    "--all-features",
+    "--features",
+    "test",
     "--",
     "--nocapture",
 ]
