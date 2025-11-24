@@ -1,7 +1,7 @@
 [package]
 name = "bevy_descendant_collector"
 description = "Bevy crate to collect named entities into a single component"
-version = "0.5.1"
+version = "0.5.2"
 readme = "../../readme.md"
 
 publish = true
