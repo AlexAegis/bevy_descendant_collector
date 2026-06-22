@@ -37,7 +37,7 @@ fn main() -> AppExit {
 
 fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
 	commands.spawn((
-		SceneRoot(
+		WorldAssetRoot(
 			asset_server.load(GltfAssetLabel::Scene(0).from_asset("models/simple_turret.glb")),
 		),
 		DescendantCollectorTarget::<MyTurretArmature>::default(), // marking this entity that it needs an accumulator
