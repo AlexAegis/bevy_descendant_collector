@@ -64,7 +64,7 @@ jobs:
       - name: test with coverage
         run: cargo tarpaulin --workspace --engine llvm --timeout 120 --out xml lcov --skip-clean --target-dir target/tarpaulin --output-dir target/coverage --no-default-features --features test
       - name: upload coverage report to codecov.io
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: target/coverage
