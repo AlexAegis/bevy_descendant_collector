@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## `bevy_descendant_collector` - [0.8.0](https://github.com/AlexAegis/bevy_descendant_collector/compare/v0.7.0...v0.8.0) - 2026-10-09
 
 ### Other
+- *(bevy_descendant_collector)* release v0.8.0
+- [**breaking**] prepare bevy 0.20 upgrade
+
+## `bevy_descendant_collector` - [0.8.0](https://github.com/AlexAegis/bevy_descendant_collector/compare/v0.7.0...v0.8.0) - 2026-10-09
+
+### Other
 - [**breaking**] prepare bevy 0.20 upgrade
 
 ## `bevy_descendant_collector` - [0.7.0](https://github.com/AlexAegis/bevy_descendant_collector/compare/v0.6.0...v0.7.0) - 2026-06-22
