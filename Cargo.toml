@@ -24,8 +24,13 @@ opt-level = 1
 [profile.dev.package."*"]
 opt-level = 3
 
+[profile.test]
+# Coverage mapping lives in __llvm_covmap, not DWARF, so full debuginfo only
+# inflates the instrumented objects. Line tables keep backtraces readable.
+debug = "line-tables-only"
+
 [workspace.dependencies]
-bevy = { version = "0.19", default-features = false, features = [
+bevy = { version = "0.20.0-rc.2", default-features = false, features = [
     "gltf_animation",
     "bevy_asset",
     "bevy_core_pipeline",
@@ -54,8 +59,8 @@ bevy = { version = "0.19", default-features = false, features = [
     "x11",
     "zstd_rust",
 ] } # Keep it loose, don't lock on patch versions
-bevy_app = { version = "0.19", default-features = false }
-bevy_ecs = { version = "0.19", default-features = false }
+bevy_app = { version = "0.20.0-rc.2", default-features = false }
+bevy_ecs = { version = "0.20.0-rc.2", default-features = false }
 proc-macro2 = { version = "1.0", default-features = false }
 quote = { version = "1.0", default-features = false }
 syn = { version = "2.0", default-features = false, features = [
@@ -65,6 +70,7 @@ syn = { version = "2.0", default-features = false, features = [
     "printing",
     "proc-macro",
 ] }
-bevy-inspector-egui = { version = "0.37.0", default-features = false, features = [
+# No release supports Bevy 0.20 yet.
+bevy-inspector-egui = { git = "https://github.com/taboky-dev/bevy-inspector-egui.git", rev = "6c4689637f289647ecad5897da35c29032fcc086", default-features = false, features = [
     "bevy_render",
 ] }

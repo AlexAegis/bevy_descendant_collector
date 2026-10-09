@@ -68,10 +68,7 @@ component to your entity.
 ```rs
 fn spawn_turret(mut commands: Commands, turret_model_assets: Res<TurretModelAssets>) {
  commands.spawn((
-  SceneBundle {
-   scene: turret_model_assets.turret_model.clone(),
-   ..default()
-  },
+  WorldAssetRoot(turret_model_assets.turret_model.clone()),
   DescendantCollectorTarget::<MyTurretArmature>::default(),
  ));
 }
@@ -93,8 +90,9 @@ cargo expand --example turret
 
 ## Bevy Compatibility Table
 
-| Bevy | bevy\_descendant\_collector |
+| Bevy | bevy_descendant_collector |
 | ---- | ------------------------- |
+| 0.20 | 0.8                       |
 | 0.19 | 0.7                       |
 | 0.18 | 0.6                       |
 | 0.17 | 0.5                       |
