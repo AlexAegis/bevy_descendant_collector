@@ -30,7 +30,7 @@ opt-level = 3
 debug = "line-tables-only"
 
 [workspace.dependencies]
-bevy = { version = "0.20.0-rc.2", default-features = false, features = [
+bevy = { version = "0.20", default-features = false, features = [
     "gltf_animation",
     "bevy_asset",
     "bevy_core_pipeline",
@@ -59,8 +59,8 @@ bevy = { version = "0.20.0-rc.2", default-features = false, features = [
     "x11",
     "zstd_rust",
 ] } # Keep it loose, don't lock on patch versions
-bevy_app = { version = "0.20.0-rc.2", default-features = false }
-bevy_ecs = { version = "0.20.0-rc.2", default-features = false }
+bevy_app = { version = "0.20", default-features = false }
+bevy_ecs = { version = "0.20", default-features = false }
 proc-macro2 = { version = "1.0", default-features = false }
 quote = { version = "1.0", default-features = false }
 syn = { version = "2.0", default-features = false, features = [
