@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## `bevy_descendant_collector` - [0.8.1](https://github.com/AlexAegis/bevy_descendant_collector/compare/v0.8.0...v0.8.1) - 2026-10-10
+
+### Other
+- update Cargo.toml dependencies
+
 ## `bevy_descendant_collector` - [0.8.0](https://github.com/AlexAegis/bevy_descendant_collector/compare/v0.7.0...v0.8.0) - 2026-10-09
 
 ### Other
