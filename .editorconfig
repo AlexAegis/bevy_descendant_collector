@@ -1,0 +1,11 @@
+root = true
+
+# shfmt reads these, also for scripts with a shebang and no extension
+[[shell]]
+indent_style = tab
+switch_case_indent = true
+
+# git lfs install and git lfs update refuse a hook that differs from the one
+# that they write
+[scripts/hooks/{post-checkout,post-commit,post-merge,pre-push}]
+ignore = true
